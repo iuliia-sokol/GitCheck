@@ -28,11 +28,15 @@ background-repeat: no-repeat;
     min-width: 285px;
     animation: color-shift 5s linear infinite;
 }
-// &__img-bg{
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-// }
+
+&__bg-bubbles-img{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    animation: float-up 10s linear infinite, color-shift 5s linear infinite;
+}
+
 &__bg-triangles-img {
     width: 100vh;
 position: absolute;
@@ -65,4 +69,14 @@ position: absolute;
     50%{filter: hue-rotate(-0.25turn);}
     75% {filter: hue-rotate(90deg);}
     100% {filter: hue-rotate(0);}
+}
+
+@keyframes float-up {
+    0% {
+        transform: translate(0, 500%) scale(1.2);
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    
 }
