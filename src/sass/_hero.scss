@@ -11,8 +11,7 @@ min-height: 100vh;
 
 &__header {
     display: inline-block;
-    // text-align: center;
-    // margin: 0 auto;
+    margin-left: 40px;
 font-weight: 800;
 font-size: 64px;
 line-height: 81px;
@@ -98,6 +97,8 @@ letter-spacing: 0.1em;
 
     &__btn {
         position: relative;
+        display: inline-flex;
+        align-items: center;
         padding: 5px 15px;
         border: 1px solid $accent-violet;
         border-radius: 10px;
@@ -151,7 +152,9 @@ letter-spacing: 0.1em;
 
 }
 
-
+.spinner-border {
+    margin-right: 8px;
+}
 
 // ANIMATION
 
