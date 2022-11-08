@@ -6,6 +6,18 @@ min-height: 100vh;
 
 &__container {
  position: relative;
+ padding: 50px 20px 40px 20px;
+}
+
+&__header {
+    display: inline-block;
+    // text-align: center;
+    // margin: 0 auto;
+font-weight: 800;
+font-size: 64px;
+line-height: 81px;
+letter-spacing: 1em;
+color: $main-txt-white;
 }
 
 &__img-wrapper{
@@ -56,6 +68,52 @@ position: absolute;
 }
 }
 
+.form {
+    margin-top: 50px;
+    margin-left: 70px;
+
+    &__label {
+        font-weight: 500;
+        color: $main-txt-white;
+        font-size: 24px;
+line-height: 1.5;
+letter-spacing: 0.1em;
+    }
+
+    &__input {
+            margin: 0 12px 0 12px;  
+        color: $main-txt-white;
+        font-size: 24px;
+line-height: 1.5;
+letter-spacing: 0.1em;
+        background-color: rgba(110, 140, 200, .1);
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #a5b7ff6c;
+  padding: 5px 10px;
+  box-shadow: 0 0 0.5em 0.2em rgba(110, 140, 200, .2);
+    }
+
+    &__btn {
+        padding: 5px 15px;
+        border: 1px solid #a5b7ff6c;
+        border-radius: 10px;
+        background-color: #a5b7ff6c;
+        box-shadow: 0 0 0.5em 0.3em rgba(110, 140, 200, .2);
+        font-weight: 500;
+         color: $main-txt-white;
+          font-size: 24px;
+line-height: 1.5;
+letter-spacing: 0.1em;
+
+    }
+
+}
+
+
+
+// ANIMATION
+
 @keyframes rotate {
     from{ transform:  translate(-50%, -50%) rotate(0deg);}
     to{transform:  translate(-50%, -50%) rotate(360deg);}
@@ -73,7 +131,7 @@ position: absolute;
 
 @keyframes float-up {
     0% {
-        transform: translate(0, 500%) scale(1.2);
+        transform: translate(0, 90vh) scale(1.2);
     }
     100% {
       transform: translate(0, 0) scale(1);

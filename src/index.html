@@ -5,23 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page title</title>
      <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico" />
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./index.js"></script>
   </head>
   <body>
     <main>
       <section class="hero">
+        
         <img src="./images/hero-bg-branches.png" alt="background image" class="hero__bg-branches-img">
         <div class="container hero__container">
+          <h1 class="hero__header">GitCheck</h1>
           <div class="hero__img-wrapper">
           <img src="./images/bubbles.png" alt="background image" class="hero__bg-bubbles-img">
           <img src="./images/triangles.png" alt="background image" class="hero__bg-triangles-img">
            <img src="./images/octopus.png" alt="octopus" class="hero__octopus-img">
           </div>
-
           <div class="hero__form-wrapper">
      <form action="" class="form">
-      <label class="form__label"><input type="text" name="input" class="form__input"></label>
+      <label class="form__label">Enter your GIT-login<input type="text" name="input" class="form__input"></label>
       <button type="submit" class="form__btn">Search</button>
     </form>
     </div>
