@@ -1,7 +1,9 @@
 @import './common';
+@import './variables';
 @import './initial-settings';
 @import './common-styles';
 @import './mixins';
 @import "./placeholders";
-@import './_visually-hidden';
-@import './_variables';
+@import './visually-hidden';
+
+@import './hero';

@@ -4,13 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page title</title>
+     <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico" />
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <form action="">
-      <label for=""><input type="text"></label>
-      <button type="submit">Search</button>
+    <main>
+      <section class="hero">
+        <img src="./images/hero-bg-branches.png" alt="background image" class="hero__bg-branches-img">
+        <div class="container hero__container">
+          <div class="hero__img-wrapper">
+            
+          <!-- <img src="./images/circles.png" alt="background image" class="hero__bg-img"> -->
+          <img src="./images/triangles.png" alt="background image" class="hero__bg-triangles-img">
+           <img src="./images/octopus.png" alt="octopus" class="hero__octopus-img">
+          </div>
+
+          <div class="hero__form-wrapper">
+     <form action="" class="form">
+      <label class="form__label"><input type="text" name="input" class="form__input"></label>
+      <button type="submit" class="form__btn">Search</button>
     </form>
+    </div>
+    </div>
+    </section>
+    </main>
   </body>
 </html>
