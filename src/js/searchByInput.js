@@ -1,9 +1,7 @@
 // import { Tooltip as Tooltip, Toast as Toast, Popover as Popover } from 'bootstrap';
 
-import { key } from './key';
+import { key } from './hide/key';
 const form = document.querySelector('.form');
-
-console.log(key);
 
 form.addEventListener('submit', onFormSubmit);
 

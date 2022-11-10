@@ -1,1 +1,0 @@
-export const key = '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'
