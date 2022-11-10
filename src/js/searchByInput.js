@@ -1,6 +1,6 @@
 // import { Tooltip as Tooltip, Toast as Toast, Popover as Popover } from 'bootstrap';
 
-import { key } from './hide/key';
+// import { key } from './hide/key';
 const form = document.querySelector('.form');
 
 form.addEventListener('submit', onFormSubmit);
@@ -11,7 +11,7 @@ function onFormSubmit(event) {
   const url = `https://api.github.com/users/${searchQuery}`;
   const headers = {
     Accept: 'application/vnd.github.v3+json',
-    Authorization: `token ${key}`,
+    // Authorization: `token ${key}`,
   };
 
   let user = {
@@ -29,29 +29,11 @@ function onFormSubmit(event) {
       fetch(`${user.repos_url}?per_page=100`, { headers: headers })
         .then(r => r.json())
         .then(repos => {
-          // console.log(repos);
+          console.log(user);
+          console.log(repos);
           user.repos = repos;
           return repos;
         })
-
-        // .then(repos => {
-        //   if (repos.length >= 100) {
-        //     for (let i = 1; i < 571; i++) {
-        //       let url = `${user.repos_url}?per_page=100?page=${i + 1}`;
-        //       fetch(url, { headers: headers })
-        //         .then(r => r.json())
-        //         .then(data => {
-        //           console.log(data);
-
-        //           repos = [...user.repos, ...data];
-        //           user.repos = repos;
-        //           console.log(user.repos);
-        //         });
-        //       return user.repos;
-        //     }
-        //   }
-        //   return user.repos;
-        // })
 
         .then(repos => {
           console.log(user);
@@ -62,9 +44,20 @@ function onFormSubmit(event) {
               .then(commit => {
                 let filteredData = [];
                 commit.forEach(com => {
+                  // console.log(com.commit);
                   // console.log(com.author.login);
                   // console.log(user.id);
-                  if (com.author.login === user.login) {
+                  if (com.author == null) {
+                    return;
+                  }
+
+                  if (
+                    com.author.id === user.id ||
+                    com.author.login === user.login ||
+                    com.commit.author.login === user.login ||
+                    com.commit.author.name === user.name ||
+                    com.commit.author.email === user.email
+                  ) {
                     // console.log(com.author.login);
 
                     filteredData.push(com);
@@ -85,7 +78,17 @@ function onFormSubmit(event) {
                       .then(commit => {
                         let filteredData = [];
                         commit.forEach(com => {
-                          if (com.author.id === user.id) {
+                          // if (com.author == null) {
+                          //   return;
+                          // }
+
+                          if (
+                            com.author.id === user.id ||
+                            com.author.login === user.login ||
+                            com.commit.author.login === user.login ||
+                            com.commit.author.name === user.name ||
+                            com.commit.author.email === user.email
+                          ) {
                             // console.log(com.author.login);
                             filteredData.push(com);
                             return filteredData;
