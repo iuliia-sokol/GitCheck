@@ -1,1 +1,2 @@
-import './js/searchByInput'
+import './js/searchByInput';
+import './js/timer';

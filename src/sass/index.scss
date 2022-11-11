@@ -1,10 +1,11 @@
 @import './common';
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import '../node_modules/bootstrap/scss/bootstrap';
 @import './variables';
 @import './initial-settings';
 @import './common-styles';
 @import './mixins';
-@import "./placeholders";
+@import './placeholders';
 @import './visually-hidden';
 
 @import './hero';
+@import './footer';
