@@ -163,7 +163,7 @@
   min-height: 350px;
   background-color: rgba(110, 140, 200, 0.1);
   margin-top: 70px;
-  margin-left: 40px;
+  // margin-left: 40px;
   border-radius: 10px;
   padding: 25px;
   box-shadow: 0 0 10em 1em rgba(110, 140, 200, 0.6);
@@ -223,6 +223,18 @@
       content: counter(v3);
     }
   }
+  &__data-members {
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__members {
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 
   &__status-wrapper {
     display: flex;
@@ -231,6 +243,7 @@
   }
 
   &__data {
+    font-size: 20px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -250,7 +263,7 @@
   &__data-header {
     display: inline-flex;
     justify-content: center;
-    line-height: 2;
+    line-height: 1.8;
   }
 
   &__counter-header {
@@ -261,8 +274,8 @@
   &__repo-number {
     font-size: 30px;
     font-weight: 700;
-    transition: --percent 1s;
-    --temp: calc(var(--percent));
+    transition: --repo 1s;
+    --temp: calc(var(--repo));
     --v1: max(var(--temp) - 0.5, 0);
     counter-reset: v1 var(--v1);
   }
@@ -305,7 +318,8 @@
   initial-value: 0;
   inherits: false;
 }
-@property --percent {
+
+@property --repo {
   syntax: '<number>';
   initial-value: 0;
   inherits: false;
@@ -325,6 +339,7 @@
   initial-value: 0;
   inherits: false;
 }
+
 @property --v1 {
   syntax: '<integer>';
   initial-value: 0;
