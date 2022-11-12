@@ -36,6 +36,8 @@ function onFormSubmit(event) {
       };
       user = { ...user, ...data };
       refs.spinner.classList.toggle('visually-hidden');
+      const date = Date.parse(data.created_at);
+      timer.start(date);
       refs.nick.textContent = data.login;
       refs.avatar.src = data.avatar_url;
       refs.name.textContent = data.name;
@@ -49,26 +51,6 @@ function onFormSubmit(event) {
         refs.location.textContent = 'Planet Earth';
       }
       refs.repos.textContent = data.public_repos;
-      // console.log();
-      const term = +refs.years.textContent;
-
-      if (term <= 0) {
-        refs.status.textContent = 'Newbie';
-      }
-      if (term >= 1 && term <= 2) {
-        refs.status.textContent = 'Middle';
-      }
-      if (term >= 3 && term <= 5) {
-        refs.status.textContent = 'Senior';
-      }
-      if (term >= 6 && term <= 10) {
-        refs.status.textContent = '';
-      } else {
-        refs.status.textContent = 'Git-God';
-      }
-
-      const date = Date.parse(data.created_at);
-      timer.start(date);
 
       console.log(user);
       return user;

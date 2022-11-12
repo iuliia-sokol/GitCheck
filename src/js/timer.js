@@ -13,11 +13,30 @@ export const timer = {
       const { years, months, days, hours, minutes, seconds } =
         convertMs(deltaTime);
       refs.years.textContent = `${years}`;
+      refs.years.dataset.years = `${years}`;
       refs.months.textContent = `${months}`;
       refs.days.textContent = `${days}`;
       refs.hours.textContent = `${hours}`;
       refs.minutes.textContent = `${minutes}`;
       refs.seconds.textContent = `${seconds}`;
+
+      const term = +refs.years.textContent;
+      console.log(term);
+      if (term <= 0) {
+        refs.status.textContent = 'Newbie';
+      }
+      if (term >= 1 && term <= 2) {
+        refs.status.textContent = 'Middle';
+      }
+      if (term >= 3 && term <= 5) {
+        refs.status.textContent = 'Senior';
+      }
+      if (term >= 6 && term <= 9) {
+        refs.status.textContent = 'Patriarch';
+      }
+      if (term > 10) {
+        refs.status.textContent = 'Lord of Git';
+      }
     }, 1000);
   },
 
