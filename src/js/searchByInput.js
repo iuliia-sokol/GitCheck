@@ -40,15 +40,32 @@ function onFormSubmit(event) {
       refs.avatar.src = data.avatar_url;
       refs.name.textContent = data.name;
       if (data.name === null) {
-        refs.name.textContent = unknown;
+        refs.name.textContent = 'Anonymous';
       }
       refs.followers.textContent = data.followers;
       refs.following.textContent = data.following;
       refs.location.textContent = data.location;
       if (data.location === null) {
-        refs.location.textContent = unknown;
+        refs.location.textContent = 'Planet Earth';
       }
       refs.repos.textContent = data.public_repos;
+      // console.log();
+      const term = +refs.years.textContent;
+
+      if (term <= 0) {
+        refs.status.textContent = 'Newbie';
+      }
+      if (term >= 1 && term <= 2) {
+        refs.status.textContent = 'Middle';
+      }
+      if (term >= 3 && term <= 5) {
+        refs.status.textContent = 'Senior';
+      }
+      if (term >= 6 && term <= 10) {
+        refs.status.textContent = '';
+      } else {
+        refs.status.textContent = 'Git-God';
+      }
 
       const date = Date.parse(data.created_at);
       timer.start(date);

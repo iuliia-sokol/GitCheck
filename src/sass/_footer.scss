@@ -1,13 +1,21 @@
 .footer {
   padding: 40px 20px;
   text-align: center;
+  position: relative;
+  color: $main-txt-white;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+
+  &__credits {
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+    color: hsla(0, 0%, 100%, 0.7);
+  }
 
   &__copyright {
     display: inline-block;
     margin: 0 auto;
-    color: $main-txt-white;
-    font-size: 12px;
-    line-height: 1.5;
-    letter-spacing: 0.1em;
   }
 }

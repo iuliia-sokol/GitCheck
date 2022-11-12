@@ -12,9 +12,6 @@ export const timer = {
       const deltaTime = currentTime - startTimer;
       const { years, months, days, hours, minutes, seconds } =
         convertMs(deltaTime);
-      if (deltaTime <= 1000) {
-        this.stop();
-      }
       refs.years.textContent = `${years}`;
       refs.months.textContent = `${months}`;
       refs.days.textContent = `${days}`;
