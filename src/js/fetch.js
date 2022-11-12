@@ -1,11 +1,11 @@
-import { key } from './hide/key';
+// import { key } from './hide/key';
 import { refs } from './searchByInput';
 
 export function fetchData(searchQuery) {
   const url = `https://api.github.com/users/${searchQuery}`;
   const headers = {
     Accept: 'application/vnd.github.v3+json',
-    Authorization: `token ${key}`,
+    // Authorization: `token ${key}`,
   };
 
   let user = {
