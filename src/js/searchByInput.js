@@ -25,8 +25,9 @@ refs.form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
   const searchQuery = event.currentTarget.elements.input.value;
-  timer.start();
+  // timer.start();
   // console.dir(refs.spinner);
   refs.spinner.classList.remove('visually-hidden');
   fetchData(searchQuery);
+  refs.form.reset();
 }

@@ -1,5 +1,6 @@
 // import { key } from './hide/key';
 import { refs } from './searchByInput';
+import { timer } from './timer';
 
 export function fetchData(searchQuery) {
   const url = `https://api.github.com/users/${searchQuery}`;
@@ -18,6 +19,8 @@ export function fetchData(searchQuery) {
     .then(data => {
       user = { ...user, ...data };
       refs.spinner.classList.toggle('visually-hidden');
+      const date = Date.parse(data.created_at);
+      timer.start(date);
       console.log(user);
       return user;
     })

@@ -3,18 +3,20 @@ import { refs } from './searchByInput';
 const date = Date.now();
 let setDate = {};
 
-const timer = {
+export const timer = {
   intervalID: null,
-  start(date) {
-    const startTimer = date;
-
+  start(startTimer) {
     this.intervalID = setInterval(() => {
       const currentTime = Date.now();
-      const deltaTime = startTimer - currentTime;
-      const { days, hours, minutes, seconds } = convertMs(deltaTime);
+      // console.log(currentTime);
+      const deltaTime = currentTime - startTimer;
+      const { years, months, days, hours, minutes, seconds } =
+        convertMs(deltaTime);
       if (deltaTime <= 1000) {
         this.stop();
       }
+      refs.years.textContent = `${years}`;
+      refs.months.textContent = `${months}`;
       refs.days.textContent = `${days}`;
       refs.hours.textContent = `${hours}`;
       refs.minutes.textContent = `${minutes}`;
@@ -28,8 +30,6 @@ const timer = {
     return;
   },
 };
-
-let diff = Date.now() - Date.parse('July 3, 2005');
 
 function convertMs(ms) {
   let seconds = Math.floor(ms / 1000),
@@ -52,5 +52,3 @@ function convertMs(ms) {
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
-
-console.log(convertMs(diff));
