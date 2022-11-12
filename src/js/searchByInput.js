@@ -1,12 +1,13 @@
 // import { Tooltip as Tooltip, Toast as Toast, Popover as Popover } from 'bootstrap';
 
-import { fetchData } from './fetch';
+import { fetchData, headers } from './fetch';
 import { timer } from './timer';
 
 export const refs = {
   form: document.querySelector('.form'),
   spinner: document.querySelector('.spinner'),
   nick: document.querySelector('[data-nick]'),
+  avatar: document.querySelector('[data-avatar]'),
   name: document.querySelector('[data-name]'),
   status: document.querySelector('[data-status]'),
   location: document.querySelector('[data-location]'),
@@ -26,8 +27,6 @@ refs.form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
   const searchQuery = event.currentTarget.elements.input.value;
-  // timer.start();
-  // console.dir(refs.spinner);
   refs.spinner.classList.remove('visually-hidden');
   fetchData(searchQuery)
     .then(data => {
@@ -37,8 +36,23 @@ function onFormSubmit(event) {
       };
       user = { ...user, ...data };
       refs.spinner.classList.toggle('visually-hidden');
+      refs.nick.textContent = data.login;
+      refs.avatar.src = data.avatar_url;
+      refs.name.textContent = data.name;
+      if (data.name === null) {
+        refs.name.textContent = unknown;
+      }
+      refs.followers.textContent = data.followers;
+      refs.following.textContent = data.following;
+      refs.location.textContent = data.location;
+      if (data.location === null) {
+        refs.location.textContent = unknown;
+      }
+      refs.repos.textContent = data.public_repos;
+
       const date = Date.parse(data.created_at);
       timer.start(date);
+
       console.log(user);
       return user;
     })

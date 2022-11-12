@@ -3,26 +3,21 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refs } from './searchByInput';
 
-export function fetchCountries(name) {
-  return fetch(
-    `${BASE_URL}${name}?fields=name,capital,population,flags,languages`
-  );
-}
+export const headers = {
+  Accept: 'application/vnd.github.v3+json',
+  // Authorization: `token ${key}`,
+};
+const notifySettings = {
+  width: '380px',
+  position: 'right-top',
+  distance: '10px',
+  opacity: 1,
+  fontSize: '20px',
+  borderRadius: '12px',
+};
 
 export function fetchData(searchQuery) {
   const url = `https://api.github.com/users/${searchQuery}`;
-  const headers = {
-    Accept: 'application/vnd.github.v3+json',
-    // Authorization: `token ${key}`,
-  };
-  const notifySettings = {
-    width: '380px',
-    position: 'right-top',
-    distance: '10px',
-    opacity: 1,
-    fontSize: '20px',
-    borderRadius: '12px',
-  };
 
   return fetch(url, { headers: headers }).then(response => {
     if (response.status === 404) {
