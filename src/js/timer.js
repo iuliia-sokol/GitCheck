@@ -21,7 +21,7 @@ export const timer = {
       refs.seconds.textContent = `${seconds}`;
 
       const term = +refs.years.textContent;
-      console.log(term);
+
       if (term <= 0) {
         refs.status.textContent = 'Newbie';
       }

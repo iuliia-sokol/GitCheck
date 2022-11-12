@@ -44,13 +44,16 @@ function onFormSubmit(event) {
       if (data.name === null) {
         refs.name.textContent = 'Anonymous';
       }
-      refs.followers.textContent = data.followers;
-      refs.following.textContent = data.following;
+      // refs.followers.textContent = data.followers;
+      // refs.following.textContent = data.following;
       refs.location.textContent = data.location;
       if (data.location === null) {
         refs.location.textContent = 'Planet Earth';
       }
-      refs.repos.textContent = data.public_repos;
+      // refs.repos.textContent = data.public_repos;
+      setTimeout(genFollowers(data.followers));
+      setTimeout(genFollowing(data.following));
+      setTimeout(genRepo(data.public_repos));
 
       console.log(user);
       return user;
@@ -147,3 +150,17 @@ function onFormSubmit(event) {
     .catch(er => console.error(er));
   refs.form.reset();
 }
+
+const genRepo = repos => {
+  refs.repos.style.setProperty('--percent', repos);
+};
+
+const genFollowers = num => {
+  refs.followers.style.setProperty('--num1', num);
+};
+
+const genFollowing = num => {
+  refs.following.style.setProperty('--num2', num);
+};
+
+// setInterval(genNumber, 2000);
