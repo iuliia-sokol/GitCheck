@@ -1,6 +1,7 @@
 // import { Tooltip as Tooltip, Toast as Toast, Popover as Popover } from 'bootstrap';
 
 import { fetchData } from './fetch';
+import { timer } from './timer';
 
 export const refs = {
   form: document.querySelector('.form'),
@@ -28,6 +29,108 @@ function onFormSubmit(event) {
   // timer.start();
   // console.dir(refs.spinner);
   refs.spinner.classList.remove('visually-hidden');
-  fetchData(searchQuery);
+  fetchData(searchQuery)
+    .then(data => {
+      let user = {
+        repos: [],
+        login: searchQuery,
+      };
+      user = { ...user, ...data };
+      refs.spinner.classList.toggle('visually-hidden');
+      const date = Date.parse(data.created_at);
+      timer.start(date);
+      console.log(user);
+      return user;
+    })
+
+    // GET REPOS
+
+    // .then(user => {
+    //        console.log(user);
+    //        console.log(repos);
+    //   fetch(`${user.repos_url}?per_page=100`, { headers: headers })
+    //     .then(r => r.json())
+    //     .then(repos => {
+    //       console.log(user);
+    //       console.log(repos);
+    //       user.repos = repos;
+    //       return repos;
+    //     });
+
+    // TO GET COMMITS
+
+    // .then(repos => {
+    //   console.log(user);
+    //   for (let repo of repos) {
+    //     let url = `${repo.url}/commits?per_page=100`;
+    //     fetch(url, { headers: headers })
+    //       .then(r => r.json())
+    //       .then(commit => {
+    //         let filteredData = [];
+    //         commit.forEach(com => {
+    //           // console.log(com.commit);
+    //           // console.log(com.author.login);
+    //           // console.log(user.id);
+    //           if (com.author == null) {
+    //             return;
+    //           }
+
+    //           if (
+    //             com.author.id === user.id ||
+    //             com.author.login === user.login ||
+    //             com.commit.author.login === user.login ||
+    //             com.commit.author.name === user.name ||
+    //             com.commit.author.email === user.email
+    //           ) {
+    //             // console.log(com.author.login);
+
+    //             filteredData.push(com);
+    //             return filteredData;
+    //           }
+
+    //           return;
+    //         });
+    //         repo.commits = [...filteredData];
+    //         return commit;
+    //       })
+    //       .then(commit => {
+    //         if (commit.length >= 100) {
+    //           for (let i = 1; i < 571; i++) {
+    //             let url = `${repo.url}/commits?per_page=100?page=${i + 1}`;
+    //             fetch(url, { headers: headers })
+    //               .then(r => r.json())
+    //               .then(commit => {
+    //                 let filteredData = [];
+    //                 commit.forEach(com => {
+    //                   // if (com.author == null) {
+    //                   //   return;
+    //                   // }
+
+    //                   if (
+    //                     com.author.id === user.id ||
+    //                     com.author.login === user.login ||
+    //                     com.commit.author.login === user.login ||
+    //                     com.commit.author.name === user.name ||
+    //                     com.commit.author.email === user.email
+    //                   ) {
+    //                     // console.log(com.author.login);
+    //                     filteredData.push(com);
+    //                     return filteredData;
+    //                   }
+    //                   return filteredData;
+    //                 });
+    //                 repo.commits = [...repo.commits, ...filteredData];
+    //                 // console.log(repo.commits);
+    //                 return commit;
+    //               });
+    //             return;
+    //           }
+    //         }
+    //       });
+    //   }
+    // });
+
+    // })
+    .catch(er => console.error(er));
   refs.form.reset();
 }

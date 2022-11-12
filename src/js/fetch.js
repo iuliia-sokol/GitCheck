@@ -1,6 +1,13 @@
 // import { key } from './hide/key';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refs } from './searchByInput';
-import { timer } from './timer';
+
+export function fetchCountries(name) {
+  return fetch(
+    `${BASE_URL}${name}?fields=name,capital,population,flags,languages`
+  );
+}
 
 export function fetchData(searchQuery) {
   const url = `https://api.github.com/users/${searchQuery}`;
@@ -8,110 +15,32 @@ export function fetchData(searchQuery) {
     Accept: 'application/vnd.github.v3+json',
     // Authorization: `token ${key}`,
   };
-
-  let user = {
-    repos: [],
-    login: searchQuery,
+  const notifySettings = {
+    width: '380px',
+    position: 'right-top',
+    distance: '10px',
+    opacity: 1,
+    fontSize: '20px',
+    borderRadius: '12px',
   };
 
-  fetch(url, { headers: headers })
-    .then(r => r.json())
-    .then(data => {
-      user = { ...user, ...data };
+  return fetch(url, { headers: headers }).then(response => {
+    if (response.status === 404) {
       refs.spinner.classList.toggle('visually-hidden');
-      const date = Date.parse(data.created_at);
-      timer.start(date);
-      console.log(user);
-      return user;
-    })
-
-    // GET REPOS
-
-    // .then(user => {
-    //        console.log(user);
-    //        console.log(repos);
-    //   fetch(`${user.repos_url}?per_page=100`, { headers: headers })
-    //     .then(r => r.json())
-    //     .then(repos => {
-    //       console.log(user);
-    //       console.log(repos);
-    //       user.repos = repos;
-    //       return repos;
-    //     });
-
-    // TO GET COMMITS
-
-    // .then(repos => {
-    //   console.log(user);
-    //   for (let repo of repos) {
-    //     let url = `${repo.url}/commits?per_page=100`;
-    //     fetch(url, { headers: headers })
-    //       .then(r => r.json())
-    //       .then(commit => {
-    //         let filteredData = [];
-    //         commit.forEach(com => {
-    //           // console.log(com.commit);
-    //           // console.log(com.author.login);
-    //           // console.log(user.id);
-    //           if (com.author == null) {
-    //             return;
-    //           }
-
-    //           if (
-    //             com.author.id === user.id ||
-    //             com.author.login === user.login ||
-    //             com.commit.author.login === user.login ||
-    //             com.commit.author.name === user.name ||
-    //             com.commit.author.email === user.email
-    //           ) {
-    //             // console.log(com.author.login);
-
-    //             filteredData.push(com);
-    //             return filteredData;
-    //           }
-
-    //           return;
-    //         });
-    //         repo.commits = [...filteredData];
-    //         return commit;
-    //       })
-    //       .then(commit => {
-    //         if (commit.length >= 100) {
-    //           for (let i = 1; i < 571; i++) {
-    //             let url = `${repo.url}/commits?per_page=100?page=${i + 1}`;
-    //             fetch(url, { headers: headers })
-    //               .then(r => r.json())
-    //               .then(commit => {
-    //                 let filteredData = [];
-    //                 commit.forEach(com => {
-    //                   // if (com.author == null) {
-    //                   //   return;
-    //                   // }
-
-    //                   if (
-    //                     com.author.id === user.id ||
-    //                     com.author.login === user.login ||
-    //                     com.commit.author.login === user.login ||
-    //                     com.commit.author.name === user.name ||
-    //                     com.commit.author.email === user.email
-    //                   ) {
-    //                     // console.log(com.author.login);
-    //                     filteredData.push(com);
-    //                     return filteredData;
-    //                   }
-    //                   return filteredData;
-    //                 });
-    //                 repo.commits = [...repo.commits, ...filteredData];
-    //                 // console.log(repo.commits);
-    //                 return commit;
-    //               });
-    //             return;
-    //           }
-    //         }
-    //       });
-    //   }
-    // });
-
-    // })
-    .catch(er => console.error(er));
+      Notify.failure(
+        'Oops, this user does not seem to exist. Please check the login',
+        notifySettings
+      );
+      return Promise.reject();
+    }
+    if (response.status === 403) {
+      refs.spinner.classList.toggle('visually-hidden');
+      Notify.warning(
+        'Oops, you`ve exceeded the allowed number of requests. Please try again later',
+        notifySettings
+      );
+      return Promise.reject();
+    }
+    return response.json();
+  });
 }
