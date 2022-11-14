@@ -65,13 +65,18 @@
               </form>
             </div>
             <div class="result visually-hidden">
-              <button
-                data-map-close
-                class="result__close-btn"
-                aria-label="close modal window"
-              >
-                &#10005;
-              </button>
+              <div class="result__close-btn-wrapper">
+                <button
+                  data-close
+                  class="result__close-btn"
+                  aria-label="close modal window"
+                >
+                  &#10005;
+                </button>
+                <div class="result__close-notify">
+                  <p class="result__notify">Come back and check again?</p>
+                </div>
+              </div>
               <div class="result__img-status-wrapper">
                 <div class="result__img-wrapper">
                   <img

@@ -9,7 +9,7 @@ export const timer = {
       const { years, months, days, hours, minutes, seconds } =
         convertMs(deltaTime);
       refs.years.textContent = `${years}`;
-      refs.years.dataset.years = `${years}`;
+      // refs.years.dataset.years = `${years}`;
       refs.months.textContent = `${months}`;
       refs.days.textContent = `${days}`;
       refs.hours.textContent = `${hours}`;

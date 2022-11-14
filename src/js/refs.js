@@ -1,8 +1,10 @@
 export const refs = {
+  formWrapper: document.querySelector('.hero__form-wrapper'),
   form: document.querySelector('.form'),
   searchBtn: document.querySelector('.form__btn'),
   spinner: document.querySelector('.spinner'),
   result: document.querySelector('.result'),
+  closeResultBtn: document.querySelector('[data-close]'),
   nick: document.querySelector('[data-nick]'),
   avatar: document.querySelector('[data-avatar]'),
   name: document.querySelector('[data-name]'),
