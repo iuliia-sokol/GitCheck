@@ -1,0 +1,264 @@
+.result {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 16px;
+  width: fit-content;
+  min-width: 700px;
+  min-height: 350px;
+  background-color: rgba(110, 140, 200, 0.1);
+  margin-top: 70px;
+  // margin-left: 40px;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 0 10em 1em rgba(110, 140, 200, 0.6);
+  color: $main-txt-white;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  z-index: 1000;
+
+  &__close-btn {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 16px;
+    right: 16px;
+    padding: 4px;
+    margin: 0;
+    z-index: 10;
+    background-color: rgba(203, 201, 98, 0.2);
+    border: 0.5px solid rgba(203, 201, 98, 0.7);
+    border-radius: 4px;
+  }
+
+  &__img-status-wrapper {
+    box-sizing: content-box;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 16px;
+    min-width: 280px;
+    flex-basis: 30%;
+    padding: 16px;
+  }
+
+  &__img-wrapper {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  &__img {
+    width: 60px;
+    height: 60px;
+    border-radius: 40%;
+  }
+
+  // &__icon {
+  //   position: absolute;
+  //   width: 40px;
+  //   bottom: 0;
+  //   left: 0;
+  //   transform: translate(40px, 20px);
+  // }
+
+  &__nick {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  &__status {
+    position: relative;
+  }
+
+  &__status::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    transform: translate(-100%, -10%);
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &__status--newbie::before {
+    background-image: url(../images/octo-newbie.png);
+  }
+
+  &__status--middle::before {
+    background-image: url(../images/octo-middle.png);
+  }
+
+  &__status--senior::before {
+    background-image: url(../images/octo-senior.png);
+  }
+
+  &__status--patriarch::before {
+    background-image: url(../images/octo-patri.png);
+  }
+
+  &__status--lord::before {
+    background-image: url(../images/octo-lord.png);
+  }
+
+  &__following {
+    transition: --num2 1s;
+    --temp2: calc(var(--num2));
+    --v2: max(var(--temp2) - 0.5, 0);
+    counter-reset: v2 var(--v2);
+
+    &::before {
+      content: counter(v2);
+    }
+  }
+
+  &__followers {
+    transition: --num1 1s;
+    --temp1: calc(var(--num1));
+    --v3: max(var(--temp1) - 0.5, 0);
+    counter-reset: v3 var(--v3);
+
+    &::before {
+      content: counter(v3);
+    }
+  }
+  &__data-members {
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__members {
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  &__status-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__data {
+    font-size: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__data-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    text-align: center;
+    align-items: center;
+    flex-basis: 60%;
+    padding: 16px;
+  }
+
+  &__data-header {
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1.8;
+  }
+
+  &__counter-header {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  &__repo-number {
+    font-size: 30px;
+    font-weight: 700;
+    transition: --repo 1s;
+    --temp: calc(var(--repo));
+    --v1: max(var(--temp) - 0.5, 0);
+    counter-reset: v1 var(--v1);
+  }
+
+  &__repo-number::before {
+    content: counter(v1);
+  }
+
+  &__repo-txt {
+    margin-left: 16px;
+    font-size: 22px;
+  }
+}
+
+.timer {
+  display: flex;
+  column-gap: 10px;
+
+  &__field {
+    min-width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__value {
+    font-size: 30px;
+    font-weight: 700;
+  }
+}
+
+@property --num1 {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+@property --num2 {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --repo {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+@property --temp {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+@property --temp1 {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+@property --temp2 {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --v1 {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+@property --v2 {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+@property --v3 {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}

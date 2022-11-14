@@ -2,6 +2,7 @@ export const refs = {
   form: document.querySelector('.form'),
   searchBtn: document.querySelector('.form__btn'),
   spinner: document.querySelector('.spinner'),
+  result: document.querySelector('.result'),
   nick: document.querySelector('[data-nick]'),
   avatar: document.querySelector('[data-avatar]'),
   name: document.querySelector('[data-name]'),

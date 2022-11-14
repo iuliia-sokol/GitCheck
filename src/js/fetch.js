@@ -22,7 +22,6 @@ export function fetchData(searchQuery) {
   return fetch(url, { headers: headers }).then(response => {
     if (response.status === 404) {
       refs.spinner.classList.toggle('visually-hidden');
-
       Notify.failure(
         'Oops, this user does not seem to exist. Please check the login',
         notifySettings

@@ -12,6 +12,7 @@ function onFormSubmit(event) {
   refs.spinner.classList.remove('visually-hidden');
   fetchData(searchQuery)
     .then(data => {
+      refs.result.classList.remove('visually-hidden');
       let user = {
         repos: [],
         login: searchQuery,
