@@ -23,4 +23,5 @@ function onCloseResultClick(event) {
   refs.status.classList.remove('result__status--senior');
   refs.status.classList.remove('result__status--patriarch');
   refs.status.classList.remove('result__status--lord');
+  refs.footer.classList.remove('footer--up');
 }

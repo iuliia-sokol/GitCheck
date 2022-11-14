@@ -21,4 +21,5 @@ export const refs = {
   seconds: document.querySelector('[data-seconds]'),
   members: document.querySelector('[data-members]'),
   repos: document.querySelector('[data-repos]'),
+  footer: document.querySelector('.footer'),
 };

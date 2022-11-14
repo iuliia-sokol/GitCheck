@@ -14,6 +14,7 @@ function onFormSubmit(event) {
     .then(data => {
       refs.formWrapper.classList.add('visually-hidden');
       refs.result.classList.remove('visually-hidden');
+      refs.footer.classList.add('footer--up')
       let user = {
         repos: [],
         login: searchQuery,
