@@ -1,27 +1,8 @@
-// import { Tooltip as Tooltip, Toast as Toast, Popover as Popover } from 'bootstrap';
-
-import { fetchData, headers } from './fetch';
+import { fetchData } from './fetch';
 import { timer } from './timer';
-
-export const refs = {
-  form: document.querySelector('.form'),
-  spinner: document.querySelector('.spinner'),
-  nick: document.querySelector('[data-nick]'),
-  avatar: document.querySelector('[data-avatar]'),
-  name: document.querySelector('[data-name]'),
-  status: document.querySelector('[data-status]'),
-  location: document.querySelector('[data-location]'),
-  following: document.querySelector('[data-following]'),
-  followers: document.querySelector('[data-followers]'),
-  years: document.querySelector('[data-years]'),
-  months: document.querySelector('[data-months]'),
-  days: document.querySelector('[data-days]'),
-  hours: document.querySelector('[data-hours]'),
-  minutes: document.querySelector('[data-minutes]'),
-  seconds: document.querySelector('[data-seconds]'),
-  members: document.querySelector('[data-members]'),
-  repos: document.querySelector('[data-repos]'),
-};
+import { refs } from './refs';
+import { animateValue } from './animate-value';
+import { genValue } from './animate-value';
 
 refs.form.addEventListener('submit', onFormSubmit);
 
@@ -46,18 +27,15 @@ function onFormSubmit(event) {
       if (data.name === null) {
         refs.name.textContent = 'Anonymous';
       }
-      // refs.followers.textContent = data.followers;
-      // refs.following.textContent = data.following;
-      // refs.repos.textContent = data.public_repos;
 
       refs.location.textContent = data.location;
       if (data.location === null) {
         refs.location.textContent = 'Planet Earth';
       }
 
-      genFollowers(data.followers);
-      genFollowing(data.following);
-      genRepo(data.public_repos);
+      genValue(data.followers, 'followers');
+      genValue(data.following, 'following');
+      genValue(data.public_repos, 'repo');
       const members = data.id - 1;
       animateValue(refs.members, 0, members, 1000);
       console.log(user);
@@ -154,29 +132,4 @@ function onFormSubmit(event) {
     // })
     .catch(er => console.error(er));
   refs.form.reset();
-}
-
-const genRepo = repos => {
-  refs.repos.style.setProperty('--repo', repos);
-};
-
-const genFollowers = num => {
-  refs.followers.style.setProperty('--num1', num);
-};
-
-const genFollowing = num => {
-  refs.following.style.setProperty('--num2', num);
-};
-
-function animateValue(obj, start, end, duration) {
-  let startTimestamp = null;
-  const step = timestamp => {
-    if (!startTimestamp) startTimestamp = timestamp;
-    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    obj.innerHTML = Math.floor(progress * (end - start) + start);
-    if (progress < 1) {
-      window.requestAnimationFrame(step);
-    }
-  };
-  window.requestAnimationFrame(step);
 }

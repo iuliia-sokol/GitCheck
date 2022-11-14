@@ -1,14 +1,10 @@
-import { refs } from './searchByInput';
-
-const date = Date.now();
-let setDate = {};
+import { refs } from './refs';
 
 export const timer = {
   intervalID: null,
   start(startTimer) {
     this.intervalID = setInterval(() => {
       const currentTime = Date.now();
-      // console.log(currentTime);
       const deltaTime = currentTime - startTimer;
       const { years, months, days, hours, minutes, seconds } =
         convertMs(deltaTime);
@@ -24,18 +20,23 @@ export const timer = {
 
       if (term <= 0) {
         refs.status.textContent = 'Newbie';
+        refs.status.classList.add('result__status--newbie');
       }
       if (term >= 1 && term <= 2) {
         refs.status.textContent = 'Middle';
+        refs.status.classList.add('result__status--middle');
       }
       if (term >= 3 && term <= 5) {
         refs.status.textContent = 'Senior';
+        refs.status.classList.add('result__status--senior');
       }
       if (term >= 6 && term <= 9) {
         refs.status.textContent = 'Patriarch';
+        refs.status.classList.add('result__status--patriarch');
       }
       if (term > 10) {
         refs.status.textContent = 'Lord of Git';
+        refs.status.classList.add('result__status--lord');
       }
     }, 1000);
   },

@@ -65,6 +65,13 @@
               </form>
             </div>
             <div class="result">
+              <button
+                data-map-close
+                class="result__close-btn"
+                aria-label="close modal window"
+              >
+                &#10005;
+              </button>
               <div class="result__img-status-wrapper">
                 <div class="result__img-wrapper">
                   <img
@@ -80,7 +87,8 @@
                     <span>Name:</span><span data-name>Anonymous</span>
                   </p>
                   <p class="result__data">
-                    <span>Status:</span><span data-status></span>
+                    <span>Status: </span>
+                    <span class="result__status" data-status></span>
                   </p>
                   <p class="result__data">
                     <span>Location:</span><span data-location></span>
@@ -154,7 +162,7 @@
             Pics credits:
             <a
               class="links-general footer__link"
-              href="https://www.vecteezy.com/"
+              href="https://www.vecteezy.com/free-vector/octopus"
               ><img
                 src="./images/vecteezy.png"
                 alt="vecteezy link"

@@ -1,7 +1,7 @@
 // import { key } from './hide/key';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { refs } from './searchByInput';
+import { refs } from './refs';
 
 export const headers = {
   Accept: 'application/vnd.github.v3+json',
@@ -22,6 +22,7 @@ export function fetchData(searchQuery) {
   return fetch(url, { headers: headers }).then(response => {
     if (response.status === 404) {
       refs.spinner.classList.toggle('visually-hidden');
+
       Notify.failure(
         'Oops, this user does not seem to exist. Please check the login',
         notifySettings
