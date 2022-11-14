@@ -1,7 +1,10 @@
 .footer {
-  padding: 40px 20px;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  padding: 40px 20px 0px 20px;
   text-align: center;
-  position: relative;
+  // position: relative;
   color: $main-txt-white;
   font-size: 12px;
   line-height: 1.5;
@@ -9,7 +12,7 @@
 
   &__credits {
     position: absolute;
-    bottom: 40px;
+    bottom: 0;
     right: 20px;
     color: hsla(0, 0%, 100%, 0.7);
   }
