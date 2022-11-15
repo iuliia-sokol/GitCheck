@@ -14,7 +14,7 @@ function onFormSubmit(event) {
     .then(data => {
       refs.formWrapper.classList.add('visually-hidden');
       refs.result.classList.remove('visually-hidden');
-      refs.footer.classList.add('footer--up')
+      refs.footer.classList.add('footer--up');
       let user = {
         repos: [],
         login: searchQuery,
@@ -41,7 +41,7 @@ function onFormSubmit(event) {
       genValue(data.public_repos, 'repo');
       const members = data.id - 1;
       animateValue(refs.members, 0, members, 1000);
-      console.log(user);
+      // console.log(user);
       return user;
     })
 
