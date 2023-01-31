@@ -2,6 +2,7 @@ body {
   font-family: 'Dosis', sans-serif;
   background-color: $main-bg;
   overflow: hidden;
+  box-sizing: border-box;
 }
 h1,
 h2,

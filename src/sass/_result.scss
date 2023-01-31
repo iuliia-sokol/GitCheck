@@ -1,23 +1,40 @@
 .result {
-  position: relative;
+  position: absolute;
+  top: -100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   column-gap: 16px;
-  width: fit-content;
-  min-width: 700px;
-  min-height: 350px;
-  background-color: rgba(110, 140, 200, 0.1);
+  width: 100%;
+  background-color: rgba(15, 25, 46, 0.8);
   margin-top: 50px;
-  // margin-left: 40px;
+
   border-radius: 10px;
-  padding: 25px;
   box-shadow: 0 0 10em 1em rgba(110, 140, 200, 0.6);
   color: $main-txt-white;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
   letter-spacing: 0.1em;
   z-index: 1000;
+
   @include transition(opacity, visibility);
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    justify-content: space-between;
+    position: relative;
+    top: 0%;
+    font-size: 14px;
+    flex-direction: row;
+    min-width: 700px;
+    width: fit-content;
+    max-width: unset;
+    min-height: 350px;
+    padding: 25px;
+    background-color: rgba(110, 140, 200, 0.1);
+  }
 
   &__close-btn-wrapper {
     position: absolute;
@@ -79,21 +96,25 @@
   }
 
   &__close-notify {
-    opacity: 0;
-    position: absolute;
-    top: 20px;
-    transform: translateX(-2px);
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 15px;
-    min-width: 180px;
-    height: 70px;
-    background-color: rgba(203, 201, 98, 0.2);
-    border: 0.5px solid rgba(203, 201, 98, 0.7);
-    border-radius: 10px;
-    padding: 25px;
-    @include transition(opacity);
+    display: none;
+
+    @media screen and (min-width: 1280px) {
+      opacity: 0;
+      position: absolute;
+      top: 20px;
+      transform: translateX(-2px);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px 15px;
+      min-width: 180px;
+      height: 70px;
+      background-color: rgba(203, 201, 98, 0.2);
+      border: 0.5px solid rgba(203, 201, 98, 0.7);
+      border-radius: 10px;
+      padding: 25px;
+      @include transition(opacity);
+    }
   }
 
   &__notify {
@@ -265,7 +286,10 @@
 
 .timer {
   display: flex;
-  column-gap: 10px;
+
+  @media screen and (min-width: 1280px) {
+    column-gap: 10px;
+  }
 
   &__field {
     min-width: 60px;
